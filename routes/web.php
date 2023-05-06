@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function ()
     Route::get('/user/dashboard', UserDashboardComponent::class)->name('user.dashboard');
 });
 
-Route::middleware(['auth'])->group(function ()
+Route::middleware(['auth', 'authadmin'])->group(function ()
 {
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
 });
