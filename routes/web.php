@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\HomeComponent;
@@ -36,6 +37,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function ()
 {
     Route::get('/user/dashboard', UserDashboardComponent::class)->name('user.dashboard');
+});
+
+Route::middleware(['auth'])->group(function ()
+{
+    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
