@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'quantity' => $this->faker->numberBetween(10,50),
             'image' => 'product-'.$this->faker->numberBetween(1,16),
             'category_id' => $this->faker->numberBetween(1,5),
-            'sale_price' => $this->faker->numberBetween
+            'sale_price' => $this->faker->numberBetween(10,100)
         ];
     }
 }
