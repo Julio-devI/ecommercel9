@@ -14,25 +14,24 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <p> We found <strong class="text-brand">688</strong> items for you!</p>
+                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items for you!</p>
                             </div>
                             <div class="sort-by-product-area">
-                                <div class="sort-by-cover mr-10">
+                                <div class="mr-10 sort-by-cover">
                                     <div class="sort-by-product-wrap">
                                         <div class="sort-by">
                                             <span><i class="fi-rs-apps"></i>Show:</span>
                                         </div>
                                         <div class="sort-by-dropdown-wrap">
-                                            <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                            <span> {{$pageSize}} <i class="fi-rs-angle-small-down"></i></span>
                                         </div>
                                     </div>
                                     <div class="sort-by-dropdown">
                                         <ul>
-                                            <li><a class="active" href="#">50</a></li>
-                                            <li><a href="#">100</a></li>
-                                            <li><a href="#">150</a></li>
-                                            <li><a href="#">200</a></li>
-                                            <li><a href="#">All</a></li>
+                                            <li><a class="{{$pageSize==12 ? 'active': ''}}" href="#" wire.click.prevent="changePageSize(12)">12</a></li>
+                                            <li><a class="{{$pageSize==15 ? 'active': ''}}" href="#" wire.click.prevent="changePageSize(15)">15</a></li>
+                                            <li><a class="{{$pageSize==25 ? 'active': ''}}" href="#" wire.click.prevent="changePageSize(25)">25</a></li>
+                                            <li><a class="{{$pageSize==32 ? 'active': ''}}" href="#" wire.click.prevent="changePageSize(32)">32</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -42,16 +41,15 @@
                                             <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
                                         </div>
                                         <div class="sort-by-dropdown-wrap">
-                                            <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                            <span> Default Sorting <i class="fi-rs-angle-small-down"></i></span>
                                         </div>
                                     </div>
                                     <div class="sort-by-dropdown">
                                         <ul>
-                                            <li><a class="active" href="#">Featured</a></li>
-                                            <li><a href="#">Price: Low to High</a></li>
-                                            <li><a href="#">Price: High to Low</a></li>
-                                            <li><a href="#">Release Date</a></li>
-                                            <li><a href="#">Avg. Rating</a></li>
+                                            <li><a class="{{$orderBy=='Default Sorting' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Default Sorting')">Default Sorting</a></li>
+                                            <li><a class="{{$orderBy=='Price: Low to High' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Price: Low to High')">Price: Low to High</a></li>
+                                            <li><a class="{{$orderBy=='Price: High to Low' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Price: High to Low')">Price: High to Low</a></li>
+                                            <li><a class="{{$orderBy=='Sort by Newness' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Sort by Newness')">Sort by Newness</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,8 +132,8 @@
                         </div>
                         <!-- Fillter By Price -->
                         <div class="sidebar-widget price_range range mb-30">
-                            <div class="widget-header position-relative mb-20 pb-10">
-                                <h5 class="widget-title mb-10">Fill by price</h5>
+                            <div class="pb-10 mb-20 widget-header position-relative">
+                                <h5 class="mb-10 widget-title">Fill by price</h5>
                                 <div class="bt-1 border-color-1"></div>
                             </div>
                             <div class="price-filter">
@@ -149,7 +147,7 @@
                                 </div>
                             </div>
                             <div class="list-group">
-                                <div class="list-group-item mb-10 mt-10">
+                                <div class="mt-10 mb-10 list-group-item">
                                     <label class="fw-900">Color</label>
                                     <div class="custome-checkbox">
                                         <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
@@ -174,45 +172,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="shop.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
+                            <a href="shop.html" class="btn btn-sm btn-default"><i class="mr-5 fi-rs-filter"></i> Fillter</a>
                         </div>
                         <!-- Product sidebar Widget -->
-                        <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
-                            <div class="widget-header position-relative mb-20 pb-10">
-                                <h5 class="widget-title mb-10">New products</h5>
+                        <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+                            <div class="pb-10 mb-20 widget-header position-relative">
+                                <h5 class="mb-10 widget-title">New products</h5>
                                 <div class="bt-1 border-color-1"></div>
                             </div>
-                            <div class="single-post clearfix">
+                            <div class="clearfix single-post">
                                 <div class="image">
                                     <img src="{{ asset('assets/imgs/shop/thumbnail-3.jpg') }}" alt="#">
                                 </div>
-                                <div class="content pt-10">
+                                <div class="pt-10 content">
                                     <h5><a href="product-details.html">Chen Cardigan</a></h5>
-                                    <p class="price mb-0 mt-5">$99.50</p>
+                                    <p class="mt-5 mb-0 price">$99.50</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width:90%"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-post clearfix">
+                            <div class="clearfix single-post">
                                 <div class="image">
                                     <img src="{{ asset('assets/imgs/shop/thumbnail-4.jpg') }}" alt="#">
                                 </div>
-                                <div class="content pt-10">
+                                <div class="pt-10 content">
                                     <h6><a href="product-details.html">Chen Sweater</a></h6>
-                                    <p class="price mb-0 mt-5">$89.50</p>
+                                    <p class="mt-5 mb-0 price">$89.50</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width:80%"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-post clearfix">
+                            <div class="clearfix single-post">
                                 <div class="image">
                                     <img src="{{ asset('assets/imgs/shop/thumbnail-5.jpg') }}" alt="#">
                                 </div>
-                                <div class="content pt-10">
+                                <div class="pt-10 content">
                                     <h6><a href="product-details.html">Colorful Jacket</a></h6>
-                                    <p class="price mb-0 mt-5">$25</p>
+                                    <p class="mt-5 mb-0 price">$25</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width:60%"></div>
                                     </div>
