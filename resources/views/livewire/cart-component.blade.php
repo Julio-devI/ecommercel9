@@ -14,7 +14,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table shopping-summery text-center clean">
+                        @if(Session::has('success_message'))
+                            <div class="alert alert-success">
+                                <strong>Success | {{Session::get('success_message')}}</strong>
+                            </div>
+                        @endif
+                        @if(Cart::instance('cart')->count() > 0)
+                            <table class="table text-center shopping-summery clean">
                                 <thead>
                                     <tr class="main-heading">
                                         <th scope="col">Image</th>
@@ -25,16 +31,8 @@
                                         <th scope="col">Remove</th>
                                     </tr>
                                 </thead>
-                                @if(Session::has('success_message'))
-                                
-                                    <div class="alert alert-success">
-                                        <strong>Success | {{Session::get('success_message')}}</strong>
-                                    </div>
-
-                                @endif
-                                @if(Cart::count() > 0)
                                 <tbody>
-                                    @foreach (Cart::content() as $item)
+                                    @foreach (Cart::instance('cart')->content() as $item)
                                         <tr>
                                             <td class="image product-thumbnail"><img src="{{ asset('assets/imgs/shop/product-')}}{{$item->model->id}}-1.jpg" alt="#"></td>
                                             <td class="product-des product-name">
@@ -43,7 +41,7 @@
                                             </td>
                                             <td class="price" data-title="Price"><span>${{$item->model->regular_price}} </span></td>
                                             <td class="text-center" data-title="Stock">
-                                                <div class="detail-qty border radius  m-auto">
+                                                <div class="m-auto border detail-qty radius">
                                                     <a href="#" class="qty-down" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')"><i class="fi-rs-angle-small-down"></i></a>
                                                     <span class="qty-val">{{$item->qty}}</span>
                                                     <a href="#" class="qty-up" wire:click.prevent="increaseQuantity('{{$item->rowId}}')"><i class="fi-rs-angle-small-up"></i></a>
@@ -68,13 +66,13 @@
                             @endif
                         </div>
                         <div class="cart-action text-end">
-                            <a class="btn  mr-10 mb-sm-15"><i class="fi-rs-shuffle mr-10"></i>Update Cart</a>
-                            <a class="btn "><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
+                            <a class="mr-10 btn mb-sm-15"><i class="mr-10 fi-rs-shuffle"></i>Update Cart</a>
+                            <a class="btn "><i class="mr-10 fi-rs-shopping-bag"></i>Continue Shopping</a>
                         </div>
                         <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
                         <div class="row mb-50">
                             <div class="col-lg-6 col-md-12">
-                                <div class="heading_s1 mb-3">
+                                <div class="mb-3 heading_s1">
                                     <h4>Calculate Shipping</h4>
                                 </div>
                                 <p class="mt-15 mb-30">Flat rate: <span class="font-xl text-brand fw-900">5%</span></p>
@@ -342,12 +340,12 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-12">
-                                            <button class="btn  btn-sm"><i class="fi-rs-shuffle mr-10"></i>Update</button>
+                                            <button class="btn btn-sm"><i class="mr-10 fi-rs-shuffle"></i>Update</button>
                                         </div>
                                     </div>
                                 </form>
                                 <div class="mb-30 mt-50">
-                                    <div class="heading_s1 mb-3">
+                                    <div class="mb-3 heading_s1">
                                         <h4>Apply Coupon</h4>
                                     </div>
                                     <div class="total-amount">
@@ -359,7 +357,7 @@
                                                             <input class="font-medium" name="Coupon" placeholder="Enter Your Coupon">
                                                         </div>
                                                         <div class="form-group col-lg-6">
-                                                            <button class="btn  btn-sm"><i class="fi-rs-label mr-10"></i>Apply</button>
+                                                            <button class="btn btn-sm"><i class="mr-10 fi-rs-label"></i>Apply</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -370,7 +368,7 @@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="border p-md-4 p-30 border-radius cart-totals">
-                                    <div class="heading_s1 mb-3">
+                                    <div class="mb-3 heading_s1">
                                         <h4>Cart Totals</h4>
                                     </div>
                                     <div class="table-responsive">
@@ -386,7 +384,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="cart_total_label">Shipping</td>
-                                                    <td class="cart_total_amount"> <i class="ti-gift mr-5"></i> Free Shipping</td>
+                                                    <td class="cart_total_amount"> <i class="mr-5 ti-gift"></i> Free Shipping</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="cart_total_label">Total</td>
@@ -395,7 +393,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="checkout.html" class="btn "> <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut</a>
+                                    <a href="checkout.html" class="btn "> <i class="mr-10 fi-rs-box-alt"></i> Proceed To CheckOut</a>
                                 </div>
                             </div>
                         </div>
