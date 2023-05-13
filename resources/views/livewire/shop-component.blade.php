@@ -129,15 +129,15 @@
                         <!-- Fillter By Price -->
                         <div class="sidebar-widget price_range range mb-30">
                             <div class="pb-10 mb-20 widget-header position-relative">
-                                <h5 class="mb-10 widget-title">Fill by price</h5>
+                                <h5 class="mb-10 widget-title">Fillter by price</h5>
                                 <div class="bt-1 border-color-1"></div>
                             </div>
                             <div class="price-filter">
                                 <div class="price-filter-inner">
-                                    <div id="slider-range"></div>
+                                    <div id="slider-range" wire:ignore></div>
                                     <div class="price_slider_amount">
                                         <div class="label-input">
-                                            <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price">
+                                            <span>Range:</span> <span class="text-info">${{$min_value}}</span> - <span class="text-info">${{$max_value}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -227,3 +227,22 @@
         </section>
     </main>
 </div>
+
+@push('scripts')
+    <script>
+        var sliderrange = $('#slider-range');
+        var amountprice = $('#amount');
+        $(function() {
+            sliderrange.slider({
+                range: true,
+                min: 0,
+                max: 1000,
+                values: [0, 1000],
+                slide: function(event, ui) {
+                    @this.set('min_value',ui.values[0]);
+                    @this.set('max_value',ui.values[1])
+                }
+            });
+        });
+    </script>
+@endpush

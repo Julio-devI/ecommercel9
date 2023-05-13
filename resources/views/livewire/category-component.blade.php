@@ -14,7 +14,7 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items for you <strong class="text-brand">{{$categoy_name}}</strong> category !</p>
+                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items for you <strong class="text-brand">{{$category_name}}</strong> category !</p>
                             </div>
                             <div class="sort-by-product-area">
                                 <div class="mr-10 sort-by-cover">
