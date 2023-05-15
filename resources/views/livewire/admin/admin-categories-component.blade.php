@@ -23,7 +23,15 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                All categories
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        All categories
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <a href="{{route('admin.category.add')}}" class="btn btn-success float-end">Add new category</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped">
