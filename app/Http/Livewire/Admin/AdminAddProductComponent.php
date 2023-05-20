@@ -64,8 +64,8 @@ class AdminAddProductComponent extends Component
         $imageName = Carbon::now()->timestamp.'.'.$this->image->extension();
         $this->image->storeAs('products',$imageName);
 
-        $product->image = $this->imageName;
-        $product->category_id = $this->sale_price;
+        $product->image = $imageName;
+        $product->category_id = $this->category_id;
         $product->save();
         session()->flash('message','Product has been added successfully !');
     }
