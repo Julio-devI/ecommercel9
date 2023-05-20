@@ -81,7 +81,7 @@ class AdminEditProductComponent extends Component
         $product->featured = $this->featured;
         $product->quantity = $this->quantity;
 
-        if($this->newImage)
+        if($this->newimage)
         {
             unlink('assets/imgs/products/'.$product->image);
             $imageName = Carbon::now()->timestamp.'.'.$this->newimage->extension();
