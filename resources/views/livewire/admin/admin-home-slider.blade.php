@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{{route('index')}}" rel="nofollow">Home</a>
-                    <span></span> All categories
+                    <span></span> All slides
                 </div>
             </div>
         </div>
@@ -25,11 +25,11 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-6 ">
-                                        All categories
+                                        All slides
                                     </div>
 
                                     <div class="col-md-6 ">
-                                        <a href="{{route('admin.category.add')}}" class="btn btn-success float-end">Add new category</a>
+                                        <a href="{{route('admin.home.slides.add')}}" class="btn btn-success float-end">Add new Slide</a>
                                     </div>
                                 </div>
                             </div>
@@ -43,26 +43,38 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Slug</th>
+                                            <th>Image</th>
+                                            <th>Top title</th>
+                                            <th>Title</th>
+                                            <th>Sub title</th>
+                                            <th>Offer</th>
+                                            <th>Link</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $category)
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                        @foreach ($slides as $slide)
                                             <tr>
-                                                <td>{{$category->id}}</td>
-                                                <td>{{$category->name}}</td>
-                                                <td>{{$category->slug}}</td>
+                                                <td>{{++$i}}</td>
+                                                <td><img src="{{asset('assets/imgs/slider')}}/{{$slide->image}}" width="80" /></td>
+                                                <td>{{$slide->top_title}}</td>
+                                                <td>{{$slide->title}}</td>
+                                                <td>{{$slide->sub_title}}</td>
+                                                <td>{{$slide->offer}}</td>
+                                                <td>{{$slide->link}}</td>
+                                                <td>{{$slide->status == 1 ? 'Active':'Inactive'}}</td>
                                                 <td>
-                                                    <a href="{{route('admin.category.edit', ['category_id'=>$category->id])}}" class="text-info">Edit</a>
-                                                    <a href="#" class="text-danger" onclick="deleteConfirmation({{$category->id}})" style="margin-left:20px;">Delete</a>
+                                                    <a href="{{route('admin.home.slide.edit', ['slide_id'=>$slide->id])}}" class="text-info">Edit</a>
+                                                    <a href="#" class="text-danger" onclick="deleteConfirmation({{$slide->id}})" style="margin-left:20px;">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{$categories->links()}}
                             </div>
                         </div>
                     </div>
