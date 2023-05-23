@@ -29,7 +29,7 @@
                                     </div>
 
                                     <div class="col-md-6 ">
-                                        <a href="{{route('admin.home.slides.add')}}" class="btn btn-success float-end">Add new Slide</a>
+                                        <a href="{{route('admin.home.slide.add')}}" class="btn btn-success float-end">Add new Slide</a>
                                     </div>
                                 </div>
                             </div>
