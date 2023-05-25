@@ -54,7 +54,7 @@ class AdminAddProductComponent extends Component
         $product->slug = $this->slug;
         $product->short_description = $this->short_description;
         $product->description = $this->description;
-        $product->sku = $this->sku;
+        $product->SKU = $this->sku;
         $product->regular_price = $this->regular_price;
         $product->sale_price = $this->sale_price;
         $product->stock_status = $this->stock_status;
