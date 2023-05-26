@@ -43,8 +43,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Slug</th>
+                                            <th>Popular</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,8 +54,10 @@
                                         @foreach ($categories as $category)
                                             <tr>
                                                 <td>{{$category->id}}</td>
+                                                <td><img src="{{asset('assets/imgs/categories')}}/{{$category->image}}" width="60"/></td>
                                                 <td>{{$category->name}}</td>
                                                 <td>{{$category->slug}}</td>
+                                                <td>{{$category->is_popular == 1 ? 'Yes':'No'}}</td>
                                                 <td>
                                                     <a href="{{route('admin.category.edit', ['category_id'=>$category->id])}}" class="text-info">Edit</a>
                                                     <a href="#" class="text-danger" onclick="deleteConfirmation({{$category->id}})" style="margin-left:20px;">Delete</a>
@@ -77,7 +81,7 @@
         <div class="modal-content">
             <div class="modal-body pb-30 pt-30">
                 <div class="row">
-                    <div class="col-md-12 text-center">
+                    <div class="text-center col-md-12">
                         <h4 class="pb-3">Do you want to delete this record ?</h4>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Cancel</button>
                         <button type="button" class="btn btn-danger" onclick="deleteCategory()">Delete</button>
